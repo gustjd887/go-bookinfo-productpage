@@ -54,5 +54,5 @@ jobs:
           git config user.email "action@github.com"
           git add .
           git commit --allow-empty -m "tag change"
-          git push origin https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git
+          git push origin main https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git
       
