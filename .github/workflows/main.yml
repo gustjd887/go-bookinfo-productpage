@@ -36,3 +36,25 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Github Helm Colne
+        uses: actions/checkout@v3
+        with:
+          repository: gustjd887/go-bookinfo-helm
+          ref: main
+          path: helm
+
+      - name: Update Image Version in the related HelmChart values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'go-bookinfo-productpage'
+          propertyPath: 'image.tag'
+          value: ${{ steps.meta.outputs.tags }}
+          branch: main
+          targetBranch: main
+          createPR: false
+          message: 'Update Image Version to ${{ steps.meta.outputs.tags }}'
+          workdir: helm
+          
+      - run: git push
+      
