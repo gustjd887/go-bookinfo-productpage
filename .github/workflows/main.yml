@@ -49,8 +49,7 @@ jobs:
       - name: tag update
         working-directory: helm
         run: |
-          git branch -m main
-          git remote add origin "https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git"
+          git clone --depth 1 https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git helm
           sed -i 's/tag: .*$/tag: "'${GITHUB_SHA::7}'"/g' go-bookinfo-productpage/values.yaml
           git config user.name "GitHub Actions"
           git config user.email "action@github.com"
