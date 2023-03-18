@@ -45,7 +45,7 @@ func main() {
 		// w.Write(detail)
 		// w.Write(review)
 	})
-	http.ListenAndServe(":8003", nil)
+	http.ListenAndServe(":8000", nil)
 }
 
 func getJson(url string) []byte {
