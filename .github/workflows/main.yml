@@ -47,7 +47,6 @@ jobs:
           
       
       - name: tag update
-        working-directory: helm
         run: |
           git clone --depth 1 https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git
           cd go-bookinfo-helm
