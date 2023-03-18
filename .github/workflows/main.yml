@@ -44,15 +44,15 @@ jobs:
           repository: gustjd887/go-bookinfo-helm
           ref: main
           path: helm
-          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: tag update
         working-directory: helm
         run: |
+          git clone 
           sed -i 's/tag: .*$/tag: "'${GITHUB_SHA::7}'"/g' go-bookinfo-productpage/values.yaml
           git config user.name "GitHub Actions"
           git config user.email "action@github.com"
           git add .
           git commit --allow-empty -m "tag change"
-          git push -u origin main
+          git push -u origin https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git
       
