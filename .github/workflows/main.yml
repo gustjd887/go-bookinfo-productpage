@@ -36,7 +36,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          
 
       - name: Github Helm Colne
         uses: actions/checkout@v3
@@ -44,6 +44,7 @@ jobs:
           repository: gustjd887/go-bookinfo-helm
           ref: main
           path: helm
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: tag update
         working-directory: helm
