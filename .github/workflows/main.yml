@@ -49,12 +49,12 @@ jobs:
       - name: tag update
         working-directory: helm
         run: |
-          git checkout -b 'main'
+          git branch -m main
+          git remote add origin "https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git"
           sed -i 's/tag: .*$/tag: "'${GITHUB_SHA::7}'"/g' go-bookinfo-productpage/values.yaml
           git config user.name "GitHub Actions"
           git config user.email "action@github.com"
           git add .
           git commit --allow-empty -m "tag change"
-          git checkout -b 'main'
-          git push origin https://gustjd887:${{ secrets.GITHUB_TOKEN }}@github.com/gustjd887/go-bookinfo-helm.git
+          git push origin main
       
