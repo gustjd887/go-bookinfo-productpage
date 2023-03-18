@@ -43,18 +43,14 @@ jobs:
           repository: gustjd887/go-bookinfo-helm
           ref: main
           path: helm
-
-      - name: Update Image Version in the related HelmChart values.yaml
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: 'go-bookinfo-productpage/values.yaml'
-          propertyPath: 'image.tag'
-          value: ${{ steps.meta.outputs.tags }}
-          branch: main
-          targetBranch: main
-          createPR: false
-          message: 'Update Image Version to ${{ steps.meta.outputs.tags }}'
-          workdir: helm
-
-      - run: git push
+      
+      - name: tag update
+        working-directory: helm
+        run: |
+          sed -i 's/tag: .*$/tag: "'${GITHUB_SHA::7}'"/g' go-bookinfo-productpage/values.yaml
+          git config user.name "GitHub Actions"
+          git config user.email "action@github.com"
+          git add .
+          git commit --allow-empty -m "tag change"
+          git push -u origin master
       
