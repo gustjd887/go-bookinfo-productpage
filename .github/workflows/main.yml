@@ -27,7 +27,6 @@ jobs:
         with:
           images: gustjd887/go-bookinfo-productpage
           tags: |
-            # minimal (short sha)
             type=sha
       
       - name: Build and push Docker image
