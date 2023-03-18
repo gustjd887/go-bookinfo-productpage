@@ -47,7 +47,7 @@ jobs:
       - name: Update Image Version in the related HelmChart values.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: 'go-bookinfo-productpage'
+          valueFile: 'go-bookinfo-productpage/values.yaml'
           propertyPath: 'image.tag'
           value: ${{ steps.meta.outputs.tags }}
           branch: main
@@ -55,6 +55,6 @@ jobs:
           createPR: false
           message: 'Update Image Version to ${{ steps.meta.outputs.tags }}'
           workdir: helm
-          
+
       - run: git push
       
